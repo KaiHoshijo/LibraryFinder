@@ -13,7 +13,7 @@ from difflib import SequenceMatcher
 import re
 import math
 from collections import Counter
-import LibraryFinder
+import FunctionSimilarity
 
 def getFileFunctions(file_path):
     # gets all the functions given in a file
@@ -86,7 +86,7 @@ for file_func in file_functions:
         ghidra_func = ghidra_functions[index]
         ghidra_name = ghidra_names[index]
 
-        finder = LibraryFinder.LibraryFinder(file_function, ghidra_func)
+        finder = FunctionSimilarity.LibraryFinder(file_function, ghidra_func)
 
         ratio = finder.getSimilarity()
 
@@ -104,7 +104,7 @@ for file_func in file_functions:
             if (ratio == max_ratio): continue
             other_function = potential_functions[ratio]
             
-            finder_2 = LibraryFinder.LibraryFinder(final_function[0], other_function[0])
+            finder_2 = FunctionSimilarity.LibraryFinder(final_function[0], other_function[0])
 
             similarity = finder_2.getSimilarity()
             similar_functions = finder_2.isSimilarFunctions(False)
